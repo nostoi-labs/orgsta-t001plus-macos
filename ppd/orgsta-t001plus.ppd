@@ -40,7 +40,7 @@
 
 *OpenUI *PageSize/Media Size: PickOne
 *OrderDependency: 10 AnySetup *PageSize
-*DefaultPageSize: w288h432
+*DefaultPageSize: w283h425
 *PageSize w283h425/100 x 150 mm (4 x 6 in): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
 *PageSize w283h283/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
 *PageSize w283h340/100 x 120 mm: "<</PageSize[283 340]/ImagingBBox null>>setpagedevice"
@@ -71,7 +71,7 @@
 
 *OpenUI *PageRegion/Media Size: PickOne
 *OrderDependency: 10 AnySetup *PageRegion
-*DefaultPageRegion: w288h432
+*DefaultPageRegion: w283h425
 *PageRegion w283h425/100 x 150 mm (4 x 6 in): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
 *PageRegion w283h283/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
 *PageRegion w283h340/100 x 120 mm: "<</PageSize[283 340]/ImagingBBox null>>setpagedevice"
@@ -100,7 +100,7 @@
 *PageRegion w144h72/2 x 1 in: "<</PageSize[144 72]/ImagingBBox null>>setpagedevice"
 *CloseUI: *PageRegion
 
-*DefaultImageableArea: w288h432
+*DefaultImageableArea: w283h425
 *ImageableArea w283h425/100 x 150 mm (4 x 6 in): "0 0 283 425"
 *ImageableArea w283h283/100 x 100 mm: "0 0 283 283"
 *ImageableArea w283h340/100 x 120 mm: "0 0 283 340"
@@ -128,7 +128,7 @@
 *ImageableArea w144h144/2 x 2 in: "0 0 144 144"
 *ImageableArea w144h72/2 x 1 in: "0 0 144 72"
 
-*DefaultPaperDimension: w288h432
+*DefaultPaperDimension: w283h425
 *PaperDimension w283h425/100 x 150 mm (4 x 6 in): "283 425"
 *PaperDimension w283h283/100 x 100 mm: "283 283"
 *PaperDimension w283h340/100 x 120 mm: "283 340"
