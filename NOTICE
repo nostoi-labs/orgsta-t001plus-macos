@@ -1,0 +1,11 @@
+ORGSTA T001Plus native arm64 CUPS driver for macOS
+Copyright 2026 Vincenzo Risi
+
+This product bundles, unmodified, the CUPS raster -> TSPL filter from
+vevor-cups-driver (https://github.com/mattiacolombomc/vevor-cups-driver),
+Copyright 2026 Mattia Colombo, licensed under the Apache License 2.0.
+The PPD in ppd/orgsta-t001plus.ppd is derived from that project's
+vevor-label-203dpi.ppd (identity fields, default media and filter path changed).
+
+ORGSTA is a trademark of its owner. This project is not affiliated with,
+endorsed by or supported by ORGSTA or Shenzhen Weida Technology Co., Ltd.

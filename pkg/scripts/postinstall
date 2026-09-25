@@ -1,0 +1,16 @@
+#!/bin/bash
+# 1) re-point queues still using the broken vendor filter, 2) create a queue if the printer is on USB.
+PPD=/Library/Printers/PPDs/Contents/Resources/orgsta-t001plus.ppd
+for f in /etc/cups/ppd/*.ppd; do
+  [ -f "$f" ] || continue
+  q="$(basename "$f" .ppd)"
+  if grep -q -E 'rastertosnailtspl-orgsta|/Library/Printers/OpenTSPL/' "$f"; then
+    lpadmin -p "$q" -P "$PPD" -E 2>/dev/null && echo "queue $q now uses the open driver"
+  fi
+done
+uri="$(lpinfo -v 2>/dev/null | awk '/usb:\/\/ORGSTA\/T001Plus/ {print $2; exit}')"
+if [ -n "$uri" ] && ! grep -q -l '/Library/Printers/OpenTSPL/' /etc/cups/ppd/*.ppd 2>/dev/null; then
+  lpadmin -p ORGSTA_T001Plus -E -v "$uri" -P "$PPD" -o printer-is-shared=false -o printer-error-policy=retry-current-job \
+    && lpadmin -d ORGSTA_T001Plus && echo "queue ORGSTA_T001Plus created at $uri"
+fi
+exit 0

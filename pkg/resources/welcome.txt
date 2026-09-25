@@ -1,0 +1,7 @@
+This installs a native Apple Silicon (arm64) print driver for the ORGSTA T001Plus thermal label printer.
+
+Why: the official ORGSTA macOS driver ships Intel-only (x86_64) binaries mislabelled as arm64. Without Rosetta 2 it fails with "The printer software is not compatible with this device". Rosetta is being phased out from macOS 28, so this driver works without it.
+
+It installs: the CUPS filter /Library/Printers/OpenTSPL/Filter/rastertotspl, the PPD "ORGSTA T001Plus", and updates any existing T001Plus queue. If the printer is plugged in, a queue is created automatically.
+
+Not affiliated with ORGSTA. Based on vevor-cups-driver by Mattia Colombo (Apache 2.0).
