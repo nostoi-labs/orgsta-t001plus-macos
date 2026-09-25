@@ -2,7 +2,7 @@ Done.
 
 1. Plug in and switch on the printer (USB).
 2. Open System Settings > Printers & Scanners. The printer appears as "ORGSTA T001Plus" (if a queue was not already created for you).
-3. Print. Default label size is 4 x 6 in (100 x 150 mm); pick another size in the print dialog if your roll differs.
+3. Print. The print dialog pre-selects your system paper size (A4/Letter): choose 100 x 150 mm once, then Presets > Save Current Settings as Preset (only this printer). macOS re-applies it automatically from then on.
 4. If the LED blinks red after the first label, hold the FEED button 3-5 seconds to calibrate the gap sensor.
 
 Uninstall: sudo /Library/Printers/OpenTSPL/uninstall.sh

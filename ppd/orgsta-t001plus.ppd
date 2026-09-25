@@ -27,10 +27,10 @@
 *TTRasterizer: Type42
 *HWMargins: 0 0 0 0
 *VariablePaperSize: True
-*MaxMediaWidth: "294"
+*MaxMediaWidth: "306"
 *MaxMediaHeight: "5670"
 *CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
-*ParamCustomPageSize Width: 1 points 36 294
+*ParamCustomPageSize Width: 1 points 36 306
 *ParamCustomPageSize Height: 2 points 36 5670
 *ParamCustomPageSize WidthOffset: 3 points 0 0
 *ParamCustomPageSize HeightOffset: 4 points 0 0
@@ -42,6 +42,7 @@
 *OrderDependency: 10 AnySetup *PageSize
 *DefaultPageSize: w283h425
 *PageSize w283h425/100 x 150 mm (4 x 6 in): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
+*PageSize A6/A6 (105 x 148 mm): "<</PageSize[297 420]/ImagingBBox null>>setpagedevice"
 *PageSize w283h283/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
 *PageSize w283h340/100 x 120 mm: "<</PageSize[283 340]/ImagingBBox null>>setpagedevice"
 *PageSize w283h482/100 x 170 mm: "<</PageSize[283 482]/ImagingBBox null>>setpagedevice"
@@ -73,6 +74,7 @@
 *OrderDependency: 10 AnySetup *PageRegion
 *DefaultPageRegion: w283h425
 *PageRegion w283h425/100 x 150 mm (4 x 6 in): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
+*PageRegion A6/A6 (105 x 148 mm): "<</PageSize[297 420]/ImagingBBox null>>setpagedevice"
 *PageRegion w283h283/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
 *PageRegion w283h340/100 x 120 mm: "<</PageSize[283 340]/ImagingBBox null>>setpagedevice"
 *PageRegion w283h482/100 x 170 mm: "<</PageSize[283 482]/ImagingBBox null>>setpagedevice"
@@ -102,6 +104,7 @@
 
 *DefaultImageableArea: w283h425
 *ImageableArea w283h425/100 x 150 mm (4 x 6 in): "0 0 283 425"
+*ImageableArea A6/A6 (105 x 148 mm): "0 0 297 420"
 *ImageableArea w283h283/100 x 100 mm: "0 0 283 283"
 *ImageableArea w283h340/100 x 120 mm: "0 0 283 340"
 *ImageableArea w283h482/100 x 170 mm: "0 0 283 482"
@@ -130,6 +133,7 @@
 
 *DefaultPaperDimension: w283h425
 *PaperDimension w283h425/100 x 150 mm (4 x 6 in): "283 425"
+*PaperDimension A6/A6 (105 x 148 mm): "297 420"
 *PaperDimension w283h283/100 x 100 mm: "283 283"
 *PaperDimension w283h340/100 x 120 mm: "283 340"
 *PaperDimension w283h482/100 x 170 mm: "283 482"

@@ -25,11 +25,21 @@ This package installs a **native universal (arm64 + x86_64) CUPS raster → TSPL
 1. Download `ORGSTA-T001Plus-macOS-<version>.pkg` from [Releases](../../releases).
 2. Double-click it, click Continue, enter your Mac password. The package is signed and notarized, so macOS opens it without warnings.
 3. Plug in and switch on the printer. If it was already connected, the installer created the queue `ORGSTA_T001Plus` for you. Otherwise open **System Settings → Printers & Scanners → Add**: the printer is recognised automatically as "ORGSTA T001Plus".
-4. Print. Default label size is **4 × 6 in (100 × 150 mm)**; pick another size in the print dialog if your roll differs.
+4. Print. Default label size is **100 × 150 mm** (4 × 6 in); see below to make the print dialog open on it.
 
 If you had a broken queue from the vendor driver, the installer switches it to the new driver; you do not need to delete it.
 
 You can leave the vendor package installed (it is inert) or remove it: delete `/Library/Printers/ORGSTA`, the `rastertosnail*-orgsta` symlinks in `/usr/libexec/cups/filter/` and the three `ORGSTA-*.ppd` files in `/Library/Printers/PPDs/Contents/Resources/`, then `sudo pkgutil --forget prt.orgsta.drv`.
+
+### Paper size: make 100 × 150 mm the default (one-time)
+
+macOS pre-selects the **system default paper size** (A4 in most of Europe, Letter in the US) in every print dialog, even for printers that do not support it; it shows up under "Other formats". No driver can change that, and the vendor driver behaves the same way. The fix is a print preset, done once:
+
+1. Open a label, press Cmd+P, set **Paper Size** to **100 × 150 mm** (or your roll size).
+2. Open the **Presets** menu → **Save Current Settings as Preset…**, name it e.g. "Labels", choose **Only this printer**, save.
+3. Print. From now on macOS re-applies that preset automatically whenever you print to the ORGSTA.
+
+Courier labels such as InPost are A6 pages (105 × 148 mm): the PPD includes A6 as well, so you can also set A6 as the system default paper size (System Settings → Printers & Scanners → Default paper size) if that Mac prints little else. Printed 1:1 on 100 mm stock you lose 2.5 mm per side, which is only the frame.
 
 ### Tips
 
@@ -92,9 +102,19 @@ Questo pacchetto installa un **filtro CUPS raster → TSPL nativo universal (arm
 1. Scarica `ORGSTA-T001Plus-macOS-<versione>.pkg` da [Releases](../../releases).
 2. Doppio click, Continua, password del Mac. Il pacchetto è firmato e notarizzato: macOS lo apre senza avvisi.
 3. Collega e accendi la stampante. Se era già collegata, l'installer ha creato la coda `ORGSTA_T001Plus` da solo. Altrimenti **Impostazioni di Sistema → Stampanti e scanner → Aggiungi**: la stampante viene riconosciuta come "ORGSTA T001Plus".
-4. Stampa. Il formato di default è **4 × 6 pollici (100 × 150 mm)**; se il rotolo è diverso, scegli la misura nel dialogo di stampa.
+4. Stampa. Il formato di default è **100 × 150 mm** (4 × 6 pollici); vedi sotto per far aprire il dialogo di stampa già su quel formato.
 
 Se avevi una coda rotta creata dal driver del produttore, l'installer la converte al driver nuovo: non serve cancellarla.
+
+### Formato carta: rendere 100 × 150 mm il default (una volta sola)
+
+macOS preseleziona in ogni dialogo di stampa il **formato carta di default di sistema** (A4 in Italia), anche per stampanti che non lo supportano: compare sotto "Altri formati". Nessun driver può cambiarlo, e il driver del produttore si comporta allo stesso modo. La soluzione è un preset di stampa, da fare una volta:
+
+1. Apri un'etichetta, Cmd+P, imposta **Formato carta** su **100 × 150 mm** (o la misura del tuo rotolo).
+2. Menu **Preset** → **Salva impostazioni attuali come preset…**, nome ad esempio "Etichette", scegli **Solo per questa stampante**, salva.
+3. Stampa. Da quel momento macOS riapplica il preset da solo ogni volta che stampi sulla ORGSTA.
+
+Le etichette dei corrieri come InPost sono pagine A6 (105 × 148 mm): il PPD include anche l'A6, quindi in alternativa puoi impostare A6 come formato di default di sistema (Impostazioni di Sistema → Stampanti e scanner → Formato carta di default) se quel Mac stampa poco altro. Stampata 1:1 su rotolo da 100 mm perdi 2,5 mm per lato, cioè solo la cornice.
 
 ### Consigli
 
