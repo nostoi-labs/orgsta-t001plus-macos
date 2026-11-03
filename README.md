@@ -58,7 +58,7 @@ sudo /Library/Printers/OpenTSPL/uninstall.sh
 Requires Xcode Command Line Tools.
 
 ```
-git clone --recurse-submodules https://github.com/Vinceris/orgsta-t001plus-macos.git
+git clone --recurse-submodules https://github.com/nostoi-labs/orgsta-t001plus-macos.git
 cd orgsta-t001plus-macos
 make          # build/rastertotspl, universal, ad-hoc signed
 make pkg      # build/ORGSTA-T001Plus-macOS-<version>.pkg (unsigned unless Developer ID certs are in the keychain)
