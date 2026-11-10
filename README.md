@@ -1,8 +1,8 @@
 # ORGSTA T001Plus driver for macOS on Apple Silicon (native arm64, no Rosetta)
 
-**Italiano più in basso.**
-
 A working print driver for the **ORGSTA T001Plus** thermal label printer on **macOS 27 and later, Apple Silicon (M1/M2/M3/M4)**, that does **not** need Rosetta 2.
+
+The filter is a universal binary and the installer accepts macOS 11 or later on both Apple Silicon and Intel Macs, but it has only been tested on macOS 27 on Apple Silicon.
 
 > Not affiliated with ORGSTA. Community project, Apache 2.0.
 
@@ -65,7 +65,7 @@ make pkg      # build/ORGSTA-T001Plus-macOS-<version>.pkg (unsigned unless Devel
 sudo installer -pkg build/ORGSTA-T001Plus-macOS-*.pkg -target /
 ```
 
-`make notarize` signs with Developer ID and notarizes with an App Store Connect API key (maintainer use).
+`make notarize` signs with Developer ID and notarizes with an App Store Connect API key (maintainer use): set `ASC_KEY_ID` and `ASC_ISSUER`, and optionally `ASC_KEY_PATH`.
 
 ## Other TSPL printers
 
@@ -76,57 +76,3 @@ The same defect affects other printers built on the Shenzhen Weida "Snail" drive
 - Filter: [vevor-cups-driver](https://github.com/mattiacolombomc/vevor-cups-driver) © 2026 Mattia Colombo, Apache License 2.0, bundled unmodified as a git submodule.
 - PPD, installer, scripts: © 2026 Vincenzo Risi, Apache License 2.0. See `LICENSE` and `NOTICE`.
 - Diagnosed and built with Claude Code on macOS 27.
-
----
-
-# Italiano
-
-Driver funzionante per la stampante di etichette **ORGSTA T001Plus** su **macOS 27 e successivi, Mac Apple Silicon (M1/M2/M3/M4)**, **senza Rosetta 2**.
-
-## Il problema
-
-Su un Mac Apple Silicon con macOS 27 il driver ufficiale ORGSTA (pacchetto `prt.orgsta.drv` 3.13.32) si ferma con:
-
-> **Il software della stampante non è compatibile con questo dispositivo.**
-
-Il pacchetto dichiara il supporto Apple Silicon, ma tutti i filtri `rastertosnail*-macarm64` al suo interno sono **binari Intel (x86_64) rinominati arm64**, identici byte per byte alla versione `-macx64`. Su Mac Intel, o su Mac Apple Silicon dove per caso c'è Rosetta 2, girano tradotti. Senza Rosetta il filtro CUPS muore con "Bad CPU type in executable" e alla stampante non arriva nulla. Apple sta ritirando Rosetta da macOS 28 in poi, quindi il problema non si risolverà da solo.
-
-Tutto il resto della catena di stampa (PPD, backend USB di Apple, la stampante stessa che parla TSPL2 standard) funziona. È rotto solo il filtro.
-
-## La soluzione
-
-Questo pacchetto installa un **filtro CUPS raster → TSPL nativo universal (arm64 + x86_64)** e il relativo PPD. Il filtro è [vevor-cups-driver](https://github.com/mattiacolombomc/vevor-cups-driver) di Mattia Colombo (Apache 2.0), non modificato, scritto per la VEVOR Y486 che usa lo stesso motore di stampa OEM con lo stesso difetto nel driver.
-
-## Installazione (2 minuti, senza Terminale)
-
-1. Scarica `ORGSTA-T001Plus-macOS-<versione>.pkg` da [Releases](../../releases).
-2. Doppio click, Continua, password del Mac. Il pacchetto è firmato e notarizzato: macOS lo apre senza avvisi.
-3. Collega e accendi la stampante. Se era già collegata, l'installer ha creato la coda `ORGSTA_T001Plus` da solo. Altrimenti **Impostazioni di Sistema → Stampanti e scanner → Aggiungi**: la stampante viene riconosciuta come "ORGSTA T001Plus".
-4. Stampa. Il formato di default è **100 × 150 mm** (4 × 6 pollici); vedi sotto per far aprire il dialogo di stampa già su quel formato.
-
-Se avevi una coda rotta creata dal driver del produttore, l'installer la converte al driver nuovo: non serve cancellarla.
-
-### Formato carta: rendere 100 × 150 mm il default (una volta sola)
-
-macOS preseleziona in ogni dialogo di stampa il **formato carta di default di sistema** (A4 in Italia), anche per stampanti che non lo supportano: compare sotto "Altri formati". Nessun driver può cambiarlo, e il driver del produttore si comporta allo stesso modo. La soluzione è un preset di stampa, da fare una volta:
-
-1. Apri un'etichetta, Cmd+P, imposta **Formato carta** su **100 × 150 mm** (o la misura del tuo rotolo).
-2. Menu **Preset** → **Salva impostazioni attuali come preset…**, nome ad esempio "Etichette", scegli **Solo per questa stampante**, salva.
-3. Stampa. Da quel momento macOS riapplica il preset da solo ogni volta che stampi sulla ORGSTA.
-
-Le etichette dei corrieri come InPost sono pagine A6 (105 × 148 mm): il PPD include anche l'A6, quindi in alternativa puoi impostare A6 come formato di default di sistema (Impostazioni di Sistema → Stampanti e scanner → Formato carta di default) se quel Mac stampa poco altro. Stampata 1:1 su rotolo da 100 mm perdi 2,5 mm per lato, cioè solo la cornice.
-
-### Consigli
-
-- **LED rosso lampeggiante dopo la prima etichetta**: tieni premuto FEED per 3–5 secondi, la stampante ricalibra il sensore del gap.
-- **"Invio dati alla stampante" che non finisce mai** subito dopo i tentativi falliti col vecchio driver: spegni la stampante, scollega e ricollega la USB, riaccendi.
-
-### Disinstallazione
-
-```
-sudo /Library/Printers/OpenTSPL/uninstall.sh
-```
-
-## Crediti e licenza
-
-Filtro: [vevor-cups-driver](https://github.com/mattiacolombomc/vevor-cups-driver) © 2026 Mattia Colombo, Apache 2.0. PPD, installer e script: © 2026 Vincenzo Risi, Apache 2.0. Progetto non affiliato a ORGSTA. Diagnosi e sviluppo con Claude Code su macOS 27.
